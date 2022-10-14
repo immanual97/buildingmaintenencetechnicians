@@ -1,0 +1,90 @@
+<app-header></app-header>
+
+<div class="sidebar">
+    <a routerLink="/customer/workrequest">New Work Request</a>
+    <a routerLink="/customer/status" >Acceptance</a>
+    <a routerLink="/customer/address">Address</a>
+    <a routerLink="/customer/notcompleted">Incompleted</a>
+    <a routerLink="/customer/history" class="active">Completed/Rating</a>
+    <a routerLink="/customer/changepassword">Change Password</a>
+    <a routerLink="/customer/findtechnician">Find Technician</a>
+  </div>
+
+<div class="container mt-4">
+  <h3 style="justify-content:center;text-align:center;" class="text-xl font-bold mt-5 mb-3">Completed Jobs</h3>
+  <h3 style="justify-content:center;text-align:center;" class=" font-bold mb-3">Kindly give rating for the jobs</h3>
+  <table class="table">
+    
+    <thead>
+      <tr>
+        <th scope="col">Service</th>
+        <th scope="col">Date</th>
+        <th scope="col">Slot</th>
+        <th scope="col">Accepted</th>
+        <th scope="col">Workstatus</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Payed</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of allwork | orderBy: key: reverse |paginate : {itemsPerPage:4,currentPage:p}">
+      <tr>
+        <td>{{item.service}}</td>
+        <td>{{item.date | date:'mediumDate'}}</td>
+        <td>{{item.slot}}</td>
+        <td>{{item.accepted}}</td>
+        <td>{{item.workstatus}}</td>
+        <td>{{item.cost}}</td>
+        <td>{{item.payed}}</td>
+        <td>{{item.rating}}</td>
+        <td><button type="button" class="btn btn-primary mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="ratingClick(item)">
+Rate Work
+        </button></td>
+      </tr>
+    </tbody>
+    
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1"
+   aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+   <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal"
+       aria-label="Close"></button>
+   </div>
+   <div class="modal-body">
+   
+    <div class="input-group mb-2">
+      <label for="rating" class="my-2 mr-3">Give your rating:</label>
+         <input type="text" class="form-control" name="rating"  placeholder="Rating" [(ngModel)]="rating" >
+    </div>
+     
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+    <button type="button" 
+    *ngIf="cid!=0" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateClick()">
+    Update    
+    </button>
+
+  </div>
+
+       
+
+   </div>
+
+</div>
+</div>
+</div>
+
+
+
+<app-footer></app-footer>

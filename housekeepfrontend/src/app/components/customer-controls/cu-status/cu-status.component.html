@@ -1,0 +1,48 @@
+<app-header></app-header>
+
+<div class="sidebar">
+    <a routerLink="/customer/workrequest">New Work Request</a>
+    <a routerLink="/customer/status"  class="active">Acceptance</a>
+    <a routerLink="/customer/address">Address</a>
+    <a routerLink="/customer/notcompleted">Incompleted</a>
+    <a routerLink="/customer/history">Completed/Rating</a>
+    <a routerLink="/customer/changepassword">Change Password</a>
+    <a routerLink="/customer/findtechnician">Find Technician</a>
+  </div>
+
+<div class="container mt-4">
+  <h3 style="justify-content:center;text-align:center;" class="mt-10 font-bold text-xl">Status of Your Work Requests</h3>
+      
+  <table class="table">
+    
+    <thead>
+      <tr>
+        
+
+        <th scope="col" style="width:100px;">Technician Name </th>
+        <th scope="col">Service</th>
+        <th scope="col">Date</th>
+        <th scope="col">Slot</th>
+        <th scope="col">Accepted</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of allwork | orderBy: key: reverse |paginate : {itemsPerPage:4,currentPage:p}">
+      <tr>
+      
+        <td>{{item.technician}}</td>
+        <td>{{item.service}}</td>
+        <td>{{item.date | date:'mediumDate'}}</td>
+        <td>{{item.slot}}</td>
+        <td>{{item.accepted}}</td>
+        
+      </tr>
+    </tbody>
+    
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,20 @@
+<app-header></app-header>
+
+<div class="container">
+<div class="card">
+    <h2 style="justify-content:center;display:flex;" class="text-2xl">Customer Login</h2>
+    <form #loginForm="ngForm" (ngSubmit)="customerLogin(loginForm)">
+        <input type="email" style="margin-top:80px;" placeholder="Email" name="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" [(ngModel)]="email" />
+        <p class="text-red-500" *ngIf="!validation()">Invalid format</p>
+        <br>
+        <input type="password" placeholder="Password" name="password" ngModel required/>
+        <br>
+        <button type="submit" name="login" class="bg-black hover:bg-gray-500">Login</button>
+        <br>
+        <a type="submit" routerLink="/adlogin"  class="bg-black hover:bg-gray-700">Admin Login</a>
+        <a type="submit" routerLink="/tclogin"  class="bg-black hover:bg-gray-700" >Technician Login</a>
+    </form>
+</div>
+</div>
+
+<app-footer></app-footer>

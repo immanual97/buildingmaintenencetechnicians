@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+
+<div class="sidebar">
+  <a routerLink="/technician/earnings">Report</a>
+    <a routerLink="/technician/changeworkstatus">Update WorkStatus</a>
+    <a routerLink="/technician/setprice" >Set Price</a>
+    <a routerLink="/technician/payed"  class="active">Customer Pay</a>
+    <a routerLink="/technician/acceptance">Work to be Accepted</a>
+    <a routerLink="/technician/changepassword">Change Password</a>
+    <a routerLink="/technician/findcustomer">Find Customer</a>
+</div>
+
+<div class="container mt-4">
+  <h3 style="justify-content:center;text-align:center;" class="text-2xl font-bold mb-4">Change Payment Status</h3>
+      
+  <table class="table">
+    
+    <thead>
+      <tr>
+        <th scope="col">WR ID</th>
+        <th scope="col">Date </th>
+        <th scope="col">Slot </th>
+        <th scope="col">Cost</th>
+        <th scope="col">Payed</th> 
+        <th scope="col">Work Status</th> 
+        <th scope="col">Operation</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of allwork |paginate : {itemsPerPage:4,currentPage:p}">
+      <tr>
+        <td>{{item.wid}} </td>
+        <td>{{item.date| date :'mediumDate'}}</td>
+        <td>{{item.slot}}</td>
+        <td>{{item.cost}}</td>
+        <td>{{item.payed}}</td>
+        <td>{{item.workstatus}}</td>
+        <td>
+            <button class="btn btn-primary"  (click)="updateClick(item)">Payed</button>
+        </td>
+      </tr>
+    </tbody>
+    
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+<app-footer></app-footer>

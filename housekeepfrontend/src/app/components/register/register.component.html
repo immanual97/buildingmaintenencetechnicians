@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="container" >
+<div class="card">
+    <h2 style="justify-content:center;display:flex;">Customer Registration</h2>
+    <form>
+        <input style="margin-top:80px;" type="text" placeholder="First Name" name="fname" [(ngModel)]="fname" required/>
+        <br>
+        <input type="text" placeholder="Last Name" name="lname" [(ngModel)]="lname" required/>
+        <br>
+        <input type="email" placeholder="Email" name="email" [(ngModel)]="email" required/>
+        <p class="text-red-500" *ngIf="!validation()">Invalid format</p>
+        <br>
+        <input type="password" placeholder="Password" name="password" [(ngModel)]="password" required/>
+        <br>
+        <input type="password" placeholder="Confirm Password" name="password2" [(ngModel)]="password2" required/>
+        <br>
+        <button type="submit" name="register" class="bg-black hover:bg-gray-500" (click)="customerregister()">Register</button>
+        <button routerLink="/tcregister" class="bg-black hover:bg-gray-500">Technician Registration</button>
+    </form>
+</div>
+</div>
+
+<app-footer></app-footer>

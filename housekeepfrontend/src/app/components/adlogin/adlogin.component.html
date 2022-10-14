@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<div class="container">
+<div class="card">
+    <h2 style="justify-content:center;display:flex;" class="text-2xl">Admin Login</h2>
+    
+    <form #loginForm="ngForm" (ngSubmit)="adminLogin(loginForm)">
+        <input type="email" style="margin-top:80px;" placeholder="Email" name="email" ngModel required/>
+        <p class="text-red-500" *ngIf="!validation(loginForm)">Invalid format</p>
+        <br>
+        <input type="password" placeholder="Password" name="password" ngModel required/>
+        <br>
+        <button type="submit" name="login" class="bg-black hover:bg-gray-500">Login</button>
+        <br>
+    </form>
+    <a type="submit" routerLink="/login" class="bg-black hover:bg-gray-500" >Customer Login</a>
+    <a type="submit" routerLink="/tclogin" class="bg-black hover:bg-gray-500" >Technician Login</a>
+</div>
+</div>
+
+<app-footer></app-footer>

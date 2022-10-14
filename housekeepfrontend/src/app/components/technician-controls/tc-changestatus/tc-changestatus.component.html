@@ -1,0 +1,94 @@
+<app-header></app-header>
+
+
+<div class="sidebar">
+  <a routerLink="/technician/earnings">Report</a>
+    <a routerLink="/technician/changeworkstatus" class="active">Update WorkStatus</a>
+    <a routerLink="/technician/setprice" >Set Price</a>
+    <a routerLink="/technician/payed">Customer Pay</a>
+    <a routerLink="/technician/acceptance">Work to be Accepted</a>
+    <a routerLink="/technician/changepassword">Change Password</a>
+    <a routerLink="/technician/findcustomer">Find Customer</a>
+</div>
+
+<div class="container mt-4">
+  <h3 style="justify-content:center;text-align:center;" class="text-2xl font-bold mb-4">Work Status</h3>
+      
+  <table class="table">
+    
+    <thead>
+      <tr>
+        <th scope="col">WR id</th>
+        <th scope="col" style="width:150px;">User Name &nbsp;&nbsp;</th>
+        <th scope="col">Service</th>
+        <th scope="col">Date</th>
+        <th scope="col">Slot</th>
+        <th scope="col">Accepted</th>
+        <th scope="col">Work Status</th>
+        <th scope="col">Operation</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of allwork |paginate : {itemsPerPage:4,currentPage:p}">
+      <tr>
+        <td>{{item.wid}} </td>
+        <td>{{item.user}} </td>
+        <td>{{item.service }}</td>
+        <td>{{item.date | date :'mediumDate'}}</td>
+        <td>{{item.slot}}</td>
+        <td>{{item.accepted}}</td>
+        <td>{{item.workstatus}}</td>
+        <td>
+          
+          <button type="button" class="btn btn-primary mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editClick(item)">
+            Change Status
+
+          </button>&nbsp;&nbsp;
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1"
+   aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+   <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal"
+       aria-label="Close"></button>
+   </div>
+   <div class="modal-body">
+    <label for="workstatus">Choose Work Status:</label>
+       <div class="input-group mb-2 mt-2" style="width:150px;">
+           <select class="form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="workstatus" selected="Open this select menu">
+            <option value="Started">Started</option>
+            <option value="On Process">On Process</option>
+            <option value="Completed">Completed</option>
+          </select>
+       </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+    <button type="button" (click)="updateClick(wid)"
+    *ngIf="wid!=0" class="btn btn-primary" data-bs-dismiss="modal">
+    Update    
+    </button>
+
+  </div>
+
+       
+
+   </div>
+
+</div>
+</div>
+</div>
+
+
+
+
+<app-footer></app-footer>

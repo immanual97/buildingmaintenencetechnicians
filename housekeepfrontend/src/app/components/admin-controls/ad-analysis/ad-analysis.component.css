@@ -1,0 +1,69 @@
+.sidebar {
+  background: #1e90ff;
+  margin-top: 0px;
+  padding-top: 30px;
+  position: fixed;
+  left: 0;
+  width: 250px;
+  height: 79%;
+  transition: 0.5s;
+  transition-property: left;
+  position: absolute;
+}
+
+.sidebar h4 {
+  color: #ccc;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  background: #1e90ff;
+  color: white;
+  padding: 5px;
+  display: block;
+  width: 100%;
+  line-height: 60px;
+  text-decoration: none;
+  padding-left: 40px;
+}
+
+.sidebar .active {
+  color: white;
+  background: #027ffc;
+}
+
+.sidebar a:hover {
+  color: #1e90ff;
+  background: white;
+  transition: 0.5s;
+}
+
+.sidebar i {
+  padding-right: 10px;
+}
+
+.content {
+  margin-left: 250px;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: 0.5s;
+}
+
+.container {
+  border: 7px solid;
+  border-color: #007ffd;
+  border-radius: 4px;
+  width: auto;
+  padding: 50px;
+  margin: 30px;
+  margin-top: 0%;
+  margin-left: 20%;
+  background-color: rgb(237, 240, 236);
+  height: 467px;
+}
+
+.srt {
+  float: right;
+}

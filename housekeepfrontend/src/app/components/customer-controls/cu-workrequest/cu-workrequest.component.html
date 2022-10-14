@@ -1,0 +1,122 @@
+<app-header></app-header>
+
+<div class="sidebar">
+    <a routerLink="/customer/workrequest" class="active">New Work Request</a>
+    <a routerLink="/customer/status">Acceptance</a>
+    <a routerLink="/customer/address">Address</a>
+    <a routerLink="/customer/notcompleted">Incompleted</a>
+    <a routerLink="/customer/history">Completed/Rating</a>
+    <a routerLink="/customer/changepassword">Change Password</a>
+    <a routerLink="/customer/findtechnician">Find Technician</a>
+  </div>
+
+  <div class="container w-full mt-4">
+    <h3 style="justify-content:center;text-align:center;" class="text-2xl text-blue-800 font-bold mb-4">New Work Requests</h3>
+        
+      
+        <div class="w-full">
+          <div class="input-group mb-2" class="mb-2 mt-2 flex">
+            <select class="form-select form-select-sm" [(ngModel)]="service_name" style="width:250px;" aria-label=".form-select-sm example">
+             <option selected [value]="0">Select Work You want</option>
+             <option *ngFor="let item of allservices" [value]="item.service" >{{item.service}}</option>
+           </select>
+
+
+          <button class="btn btn-primary ml-2" (click)="GetTechnicianByService()"> Find Technicians</button>
+        </div>
+
+        <div class="w-full">
+          <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="w-1/12" (click)="sort('fname')">Id&nbsp;&nbsp;
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" style="cursor: pointer;" height="10" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                      <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                    </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" style="cursor: pointer;" height="10" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                      <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                    </svg>
+              </th>
+              <th scope="col" class="w-1/12">Name </th>
+              <th scope="col" class="w-5/12">Email</th>
+              <th scope="col" class="w-1/12">Service</th>
+              <th scope="col" class="w-1/12">Rating</th>
+              <th scope="col" class="w-1/12">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of alltechnicians | orderBy: key: reverse |paginate : {itemsPerPage:4,currentPage:p}">
+            <tr class="my-2">
+              <td>{{item.tid}}</td>
+              <td>{{item.fname}}</td>
+              <td>{{item.email}}</td>
+              <td>{{item.service}}</td>
+              <td>{{item.overallrating}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="bookClick(item.tid)"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Book
+                </button>
+      
+
+      
+              </td>
+            </tr>
+          </tbody>
+          </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+
+      </div>
+      
+      
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1"
+   aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content">
+   <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">Book Now</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal"
+       aria-label="Close"></button>
+   </div>
+   <div class="modal-body">
+    <div class="flex">
+    <label for="" class="">Select Date</label>
+       <div class="input-group mb-2 ml-10" style="width:250px;">
+           <input type="date" class="form-control" [(ngModel)]="book_date"  [min]="currentDate" placeholder="Choose Day">
+       </div>
+    </div>
+
+    <div class="mb-2 flex">
+      <label for="" class="">Select Slot</label>
+ 
+      <div class="ml-10">
+      <select class="form-select form-select-sm" [(ngModel)]="slot_name" style="width:250px;" aria-label=".form-select-sm example">
+        <option selected [value]="0">Select Slot</option>
+        <option *ngFor="let item of allslots" [value]="item.slots" >{{item.slots}}</option>
+      </select>
+    </div>
+    </div>
+ 
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+    <button type="button" (click)="bookWork()"
+    class="btn btn-primary" data-bs-dismiss="modal">
+    Book  
+    </button>
+
+  </div>
+
+       
+
+   </div>
+
+</div>
+</div>
+</div>
+  
+  
+  
+<app-footer></app-footer>

@@ -1,0 +1,12 @@
+<ul class="w-full py-2">
+    <li><a routerLink="/home" >Home</a></li>
+    <li><a routerLink="/contact" >Contact</a></li>
+    <li><a routerLink="/about" >About</a></li>
+    <li *ngIf="!loggedin()" style="float:right;"><a routerLink="/login">Login</a></li>
+    <li *ngIf="!loggedin()" style="float:right;"><a routerLink="/register">Register</a></li>
+    <li *ngIf="loggedin()" style="float:right;cursor:pointer;"><a (click)="dashboard()" >Dashboard</a></li>
+    <li *ngIf="loggedin()" style="float:right;cursor:pointer;"><a (click)="logout()" >Logout</a></li>
+    <h3 class="my-3 ml-10">v 1.0.0.0</h3>
+    <h3 class="my-3 ml-10">Copyright:Immanual Jose</h3>
+  </ul>
+  

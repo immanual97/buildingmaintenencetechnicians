@@ -1,0 +1,55 @@
+.container {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background-image: white;
+}
+
+.card {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  width: 500px;
+  height: 500px;
+  background-image: linear-gradient(to right, #ffa384, #74bdcb);
+  border: none;
+}
+
+input {
+  margin-top: 20px;
+  outline: none;
+  width: 50%;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: black;
+}
+
+input[type="text"]:focus {
+  border: 3px solid #555;
+}
+
+button {
+  border-radius: 20px;
+  margin-top: 40px;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 8px;
+  text-decoration: none;
+  border: none;
+}
+a {
+  margin-top: 40px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 8px;
+  text-decoration: none;
+  border-radius: 20px;
+}
